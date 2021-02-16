@@ -1,32 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <nav-bar />
+    <transition
+      name="fade"
+      mode="out-in"
+      :duration="{ enter: 500, leave: 800 }"
+    >
+      <router-view class="mt-lg-0" style="margin-top: 70px" />
+    </transition>
+    <app-footer />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import NavBar from "@/components/NavBar/NavBar.vue";
+import AppFooter from "@/components/Global/AppFooter.vue";
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+  components: {
+    NavBar,
+    AppFooter
+  },
+  created() {
+    this.$store.dispatch("getProducts");
+  }
+};
+</script>
+<style></style>

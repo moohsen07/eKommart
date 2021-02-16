@@ -1,0 +1,123 @@
+{
+  "products" : [
+    {
+    "id" : 1 ,
+    "name": "Black/Brown Leather Barkeley 38",
+    "category" : "men",
+    "img1": "Black_Brown1.png",
+    "img2": "Black_Brown2.png",
+    "rating" : 4,
+    "price": 177.63,
+    "quantity": 1
+  },
+  {
+    "id" : 2 ,
+    "name": "Silver/Brown Leather Barkeley 38",
+    "category" : "smartwatches",
+    "img1": "Silver_Brown1.png",
+    "img2": "Silver_Brown2.png",
+    "rating" : 4.1,
+    "price": 198.80,
+    "quantity": 1
+  },
+  {
+    "id" : 3 ,
+    "name": "Black/Silver Leather Barkeley 38",
+    "category" : "women",
+    "img1": "Black_Silver1.png",
+    "img2": "Black_Silver2.png",
+    "rating" : 3.1,
+    "price": 128.62,
+    "quantity": 1
+  },
+  {
+    "id" : 4 ,
+    "name": "Black/Black Leather Barkeley 38",
+    "category" : "women",
+    "img1": "Black_Black1.png",
+    "img2": "Black_Black2.png",
+    "rating" : 4,
+    "price": 130.16,
+    "quantity": 1
+  },
+  {
+    "id" : 5 ,
+    "name": "Gold/Black Leather Barkeley 38",
+    "category" : "men",
+    "img1": "Gold_Black1.png",
+    "img2": "Gold_Black2.png",
+    "rating" : 4.1,
+    "price": 176.76,
+    "quantity": 1
+  },
+  {
+    "id" : 6 ,
+    "name": "Silver/Green Leather Barkeley 38",
+    "category" : "men",
+    "img1": "Silver_Green1.png",
+    "img2": "Silver_Green2.png",
+    "rating" : 2.1,
+    "price": 182.52,
+    "quantity": 1
+  },
+  {
+    "id" : 7 ,
+    "name": "Silver/Black Leather Barkeley 38",
+    "category" : "women",
+    "img1": "Silver_Black1.png",
+    "img2": "Silver_Black2.png",
+    "rating" : 3.1,
+    "price": 124.52,
+    "quantity": 1
+  },
+  {
+    "id" : 8 ,
+    "name": "Gold/Brown Leather Barkeley 38",
+    "category" : "smartwatches",
+    "img1": "Gold_Brown1.png",
+    "img2": "Gold_Brown2.png",
+    "rating" : 3.8,
+    "price": 198.33,
+    "quantity": 1
+  },
+  {
+    "id" : 9 ,
+    "name": "Brown/Gold Leather Barkeley 38",
+    "category" : "smartwatches",
+    "img1": "Brown_Gold1.png",
+    "img2": "Brown_Gold2.png",
+    "rating" : 4,
+    "price": 108.08,
+    "quantity": 1
+  },
+  {
+    "id" : 10 ,
+    "name": "Black/Black Leather Barkeley 38",
+    "category" : "women",
+    "img1": "Black_Black1.png",
+    "img2": "Black_Black2.png",
+    "rating" : 4,
+    "price": 130.16,
+    "quantity": 1
+  },
+  {
+    "id" : 11 ,
+    "name": "Silver/Black Leather Barkeley 38",
+    "category" : "men",
+    "img1": "Silver_Black1.png",
+    "img2": "Silver_Black2.png",
+    "rating" : 3.1,
+    "price": 124.52,
+    "quantity": 1
+  },
+  {
+    "id" : 12 ,
+    "name": "Black/Silver Leather Barkeley 38",
+    "category" : "smartwatches",
+    "img1": "Black_Silver1.png",
+    "img2": "Black_Silver2.png",
+    "rating" : 3.1,
+    "price": 128.62,
+    "quantity": 1
+  }
+]}
