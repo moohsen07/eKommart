@@ -60,7 +60,7 @@ export default {
 
 <style>
 .inc-dec a.add-cart {
-  padding: 10px 70px;
+  padding: 10px 50px;
   font-size: 18px;
   border: none;
 }

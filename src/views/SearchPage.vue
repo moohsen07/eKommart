@@ -78,9 +78,6 @@ export default {
 </script>
 
 <style>
-.search-page a.add-cart {
-  padding: 10px 50px;
-}
 .search-page .quantity .dec,
 .search-page .quantity .inc {
   color: #fff;

@@ -6,12 +6,12 @@
       v-if="product"
     >
       <div class="preview bg-white" :class="{ show: flip }">
-        <button class="close" @click="closeProduct">
+        <button class="close p-3" @click="closeProduct">
           <i class="fas fa-times"></i>
         </button>
         <div class="row">
           <div class="col-12 col-lg-6">
-            <div class="product-slider py-5 h-100">
+            <div class="product-slider py-3 h-100">
               <flickity ref="flickity" :options="flickityOptions">
                 <div
                   class="carousel-cell w-100 h-100 d-flex justify-content-center align-items-center"
@@ -105,6 +105,10 @@ export default {
         this.flip = true;
       }, 100);
     });
+  },
+  updated() {
+    if (this.flip === true) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "auto";
   }
 };
 </script>
@@ -115,7 +119,7 @@ export default {
 }
 .preview {
   transform: rotate3d(0, 1, 0, -60deg);
-  width: 75%;
+  width: 70%;
   color: #000;
   opacity: 0.1;
   transition: 0.8s ease;
@@ -160,7 +164,7 @@ a.add-cart {
 @media (max-width: 992px) {
   .preview {
     width: 80%;
-    height: 80%;
+    height: 50%;
     overflow-y: auto;
     overflow-x: hidden;
   }

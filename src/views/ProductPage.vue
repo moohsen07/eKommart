@@ -225,6 +225,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getSingleProduct", this.id);
+    document.body.style.overflowY = "auto";
   },
   mounted() {
     const marker = document.querySelector(".marker");

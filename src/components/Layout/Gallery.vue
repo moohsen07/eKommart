@@ -49,6 +49,7 @@ export default {
 
 <style scoped>
 .gallery .image .overlay {
+  z-index: 11;
   opacity: 0;
 }
 .image {

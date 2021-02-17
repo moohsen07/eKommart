@@ -35,7 +35,6 @@ export default new Vuex.Store({
       axios
         .get("https://ekommart-8b51d-default-rtdb.firebaseio.com/products.json")
         .then(response => {
-          console.log(response);
           commit("SET_PRODUCTS", response.data);
         });
     },
