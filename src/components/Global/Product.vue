@@ -88,17 +88,7 @@ export default {
   font-family: "Rubik", sans-serif;
   font-size: 18px;
 }
-.product a:first-of-type:hover {
-  color: var(--main-color) !important;
-}
-.product .quantity .dec,
-.product .quantity .inc {
-  color: #000;
-}
-.product .quantity .dec::before,
-.product .quantity .inc::before {
-  background: #000;
-}
+
 .quantity .dec:hover,
 .quantity .inc:hover {
   color: var(--main-color);
@@ -145,6 +135,7 @@ export default {
 }
 .inner-hover button {
   position: relative;
+  background-color: #fff;
   padding: 10px 25px;
   border: 0.5px solid #000;
   overflow: hidden;

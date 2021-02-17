@@ -13,11 +13,7 @@
       </div>
       <div class="display-products mt-4">
         <transition-group name="cart" tag="div">
-          <div
-            class="product border-0 mb-4"
-            v-for="product in carts"
-            :key="product.id"
-          >
+          <div class="product mb-4" v-for="product in carts" :key="product.id">
             <div class="row">
               <div class="col-4">
                 <i
@@ -148,10 +144,12 @@ export default {
   height: 1px;
   background: rgba(204, 204, 204, 0.226);
 }
+.cart .product {
+  border: none !important;
+}
 .product span {
   font-size: 14px;
 }
-
 .cart-footer {
   position: absolute;
   bottom: 30px;
