@@ -11,7 +11,7 @@
         <span class="text-white-50">> </span>
         <span class="text-white-50">{{ search }}</span>
       </div>
-      <template v-if="filteredProducts">
+      <template v-if="filteredProducts.length">
         <h1 class="my-4">Searched Products</h1>
         <div
           class="product-search mb-4"

@@ -32,13 +32,19 @@ export default new Vuex.Store({
   },
   actions: {
     getProducts({ commit }) {
-      axios.get("http://localhost:3000/products").then(response => {
-        commit("SET_PRODUCTS", response.data);
-      });
+      axios
+        .get("https://ekommart-8b51d-default-rtdb.firebaseio.com/products.json")
+        .then(response => {
+          console.log(response);
+          commit("SET_PRODUCTS", response.data);
+        });
     },
     getSingleProduct({ commit }, productId) {
       axios
-        .get(`http://localhost:3000/products/${productId}`)
+        .get(
+          `https://ekommart-8b51d-default-rtdb.firebaseio.com/products/${productId -
+            1}.json`
+        )
         .then(response => {
           commit("SET_SINGLE_PRODUCT", response.data);
         });
