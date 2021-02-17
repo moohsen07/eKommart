@@ -1,4 +1,8 @@
 module.exports = {
   lintOnSave: false,
-  publicPath: process.env.NODE_ENV === "production" ? "eKommart" : "/"
+  pwa: {
+    workboxOptions: {
+      exclude: [/_redirects/]
+    }
+  }
 };

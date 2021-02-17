@@ -5,7 +5,7 @@
       class="overlay d-flex justify-content-center align-items-center"
       @click.self="closeModel"
     >
-      <img class="h-75" :src="require(`../../assets/images/${img}`)" alt="" />
+      <img class="h-50" :src="require(`../../assets/images/${img}`)" alt="" />
     </div>
   </transition>
 </template>

@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .carousel-cell {
   width: 100vw;
   height: 80vh;
@@ -82,7 +82,7 @@ export default {
   top: 50%;
   z-index: 1;
   opacity: 0;
-  transition: 0.7s 0.3s;
+  transition: 1s ease 0.3s;
 }
 .rl {
   transform: translate(-100%, -50%);
@@ -92,7 +92,7 @@ export default {
   opacity: 1;
 }
 .ud {
-  left: 50%;
+  left: 50% !important;
   transform: translate(-50%, -100%);
 }
 .carousel-cell.is-selected .ud {
@@ -106,6 +106,18 @@ export default {
 .carousel-cell .carousel-text span {
   color: #fff;
   font-size: 25px;
+}
+@media (max-width: 992px) {
+  .carousel-text {
+    left: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .carousel-cell .carousel-text h2 {
+    font-size: 80px;
+    text-align: center;
+  }
 }
 .carousel-text span::before {
   content: "";

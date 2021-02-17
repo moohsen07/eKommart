@@ -14,7 +14,7 @@
             <i class="fas fa-search position-absolute"></i>
             <input
               class="form-control bg-transparent border-0 w-100 pl-4 text-white-50"
-              @keypress.enter.prevent=""
+              @keypress.enter.prevent="redirect"
               v-model="search"
               placeholder="Search products"
             />
@@ -88,6 +88,9 @@ export default {
   methods: {
     openCart() {
       this.$emit("openCart");
+    },
+    redirect() {
+      window.location.href = `/search/${this.search}`;
     }
   },
   computed: {

@@ -49,7 +49,7 @@
             <i class="fas fa-search position-absolute"></i>
             <input
               class="form-control bg-transparent border-0 w-100 pl-4 text-white-50"
-              @keypress.enter.prevent=""
+              @keypress.enter.prevent="redirect"
               v-model="search"
               placeholder="Search products"
             />
@@ -64,7 +64,7 @@
       <div class="row">
         <div class="col-4 px-0">
           <div
-            class="icons-container text-center border py-2"
+            class="icons-container text-center border py-1"
             style="cursor: pointer"
           >
             <i class="fas fa-store"></i>
@@ -73,7 +73,7 @@
         </div>
         <div class="col-4 px-0">
           <div
-            class="icons-container text-center border py-2"
+            class="icons-container text-center border py-1"
             style="cursor: pointer"
           >
             <i class="far fa-user"></i>
@@ -82,7 +82,7 @@
         </div>
         <div class="col-4 px-0">
           <div
-            class="icons-container text-center border py-2"
+            class="icons-container text-center border py-1"
             style="cursor: pointer"
             @click="searchBar = !searchBar"
           >
@@ -195,6 +195,9 @@ export default {
     openSideNav() {
       this.openNav = true;
       setTimeout(() => (this.slide = true), 100);
+    },
+    redirect() {
+      window.location.href = `/search/${this.search}`;
     }
   },
   computed: {
@@ -210,7 +213,7 @@ export default {
 .upper-nav,
 .bottom-nav {
   background-color: #252525;
-  box-shadow: 0px 0px 20px 10px #202020;
+  box-shadow: 0px 0px 20px 5px #202020;
 }
 .burger-button .lines {
   height: 2px;
@@ -244,17 +247,13 @@ export default {
   background-color: #252525;
   padding: 20px;
 }
-
-.icons-container i {
-  font-size: 21px;
-}
 .icons-container span {
   letter-spacing: 1px;
 }
 .side-links {
   background-color: #000;
   height: 100vh;
-  width: 40%;
+  width: 50%;
   padding: 50px 20px;
   transform: translateX(-100%);
   transition: 0.3s ease;

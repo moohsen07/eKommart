@@ -11,15 +11,15 @@
         <span class="text-white-50">> </span>
         <span class="text-white-50">{{ search }}</span>
       </div>
-      <template v-if="filterdProducts">
-        <h1 class="my-4">Searched Peoducts</h1>
+      <template v-if="filteredProducts">
+        <h1 class="my-4">Searched Products</h1>
         <div
           class="product-search mb-4"
           v-for="product in filteredProducts"
           :key="product.id"
         >
           <div class="row">
-            <div class="col-4 col-lg-3">
+            <div class="col-4 col-lg-3 align-self-center">
               <router-link
                 :to="{ name: 'product-page', params: { id: product.id } }"
               >
@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style>
+.search-page a.add-cart {
+  padding: 10px 50px;
+}
 .search-page .quantity .dec,
 .search-page .quantity .inc {
   color: #fff;
