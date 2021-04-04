@@ -163,8 +163,8 @@ a.add-cart {
 }
 @media (max-width: 992px) {
   .preview {
-    width: 80%;
-    height: 50%;
+    width: 90%;
+    height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
   }
