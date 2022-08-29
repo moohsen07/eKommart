@@ -9,7 +9,13 @@
             >Give Her a Symbol of your never – Ending love</span
           >
           <div
-            class="d-flex align-items-center flex-column flex-md-row mt-4 flex-wrap"
+            class="
+              d-flex
+              align-items-center
+              flex-column flex-md-row
+              mt-4
+              flex-wrap
+            "
           >
             <div class="count-down d-flex mb-4 mb-lg-0">
               <div class="count-down-item text-center mr-5">
@@ -59,7 +65,7 @@ export default {
     };
   },
   created() {
-    let countDownDate = new Date("Mar 1, 2022").getTime();
+    let countDownDate = new Date("Mar 1, 2024").getTime();
     setInterval(() => {
       let now = new Date().getTime();
       let diff = countDownDate - now;

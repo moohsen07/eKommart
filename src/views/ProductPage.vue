@@ -10,10 +10,10 @@
         <span class="text-white-50">> </span>
         <router-link class="text-white" to="">Shop </router-link>
         <span class="text-white-50">> </span>
-        <span class="text-white-50">{{ product.name }}</span>
+        <span class="text-white-50">{{ product ? product.name : "" }}</span>
       </div>
       <!-- Product OverView -->
-      <div class="product-overview mt-5">
+      <div class="product-overview mt-5" v-if="product">
         <div class="row">
           <div class="col-12 col-md-7">
             <div class="product-image py-4 mb-5 mb-md-0 border">
@@ -23,7 +23,14 @@
                 :class="'h-100'"
               >
                 <div
-                  class="carousel-cell d-flex justify-content-center align-items-center h-100 w-100"
+                  class="
+                    carousel-cell
+                    d-flex
+                    justify-content-center
+                    align-items-center
+                    h-100
+                    w-100
+                  "
                 >
                   <img
                     class="img-fluid"
@@ -32,7 +39,14 @@
                   />
                 </div>
                 <div
-                  class="carousel-cell d-flex justify-content-center align-items-center h-100 w-100"
+                  class="
+                    carousel-cell
+                    d-flex
+                    justify-content-center
+                    align-items-center
+                    h-100
+                    w-100
+                  "
                 >
                   <img
                     class="img-fluid"
@@ -46,7 +60,7 @@
           <div class="col-12 col-md-5">
             <div class="product-det">
               <span class="badge badge-success mb-2">in Stock</span>
-              <h1>{{ product.name }}</h1>
+              <h1>{{ product ? product.name : "" }}</h1>
               <star-rating
                 :read-only="true"
                 :rating="product.rating"
@@ -90,7 +104,7 @@
     <div class="tabs mt-5">
       <div class="container">
         <ul class="position-relative d-md-flex justify-content-center">
-          <li class="marker d-none d-md-block" ref="marker"></li>
+          <li class="marker d-none d-md-block" id="marker" ref="marker"></li>
           <li
             id="tab-one"
             @click="
@@ -228,11 +242,12 @@ export default {
     document.body.style.overflowY = "auto";
   },
   mounted() {
-    const marker = document.querySelector(".marker");
-    const tabOne = document.querySelector(".tabs li#tab-one");
-    if (marker)
+    const marker = this.$refs.marker;
+    const tabOne = document.querySelector(".tabs #tab-one");
+    if (marker) {
       marker.style.cssText = `left: ${tabOne.offsetLeft +
         "px"}; width: ${tabOne.offsetWidth + "px"}`;
+    }
   }
 };
 </script>
