@@ -10,22 +10,8 @@
         </div>
         <!-- Search Bar -->
         <div class="col-6">
-          <form class="form-inline my-2 my-lg-0">
-            <i class="fas fa-search position-absolute"></i>
-            <input
-              class="
-                form-control
-                bg-transparent
-                border-0
-                w-100
-                pl-4
-                text-white-50
-              "
-              @keypress.enter.prevent="redirect"
-              v-model="search"
-              placeholder="Search products"
-            />
-            <button class="text-white" @click.prevent="redirect">Search</button>
+          <form class="my-2 my-lg-0">
+            <search-widget v-model="search" />
           </form>
         </div>
         <!-- Icons -->
@@ -85,8 +71,10 @@
 <script>
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
+import SearchWidget from "../Global/SearchWidget.vue";
 
 export default {
+  components: { SearchWidget },
   data() {
     return {
       search: ""
@@ -96,29 +84,11 @@ export default {
   methods: {
     openCart() {
       this.$emit("openCart");
-    },
-    redirect() {
-      if (this.search.length > 0) {
-        this.$router.push({
-          name: "search-page",
-          query: { search: this.search }
-        });
-      }
     }
   },
   computed: {
     ...mapState(["carts"]),
     ...mapGetters(["subTotal"])
-  },
-  created() {
-    this.$watch(
-      () => this.$route.name,
-      newVal => {
-        if (newVal != "search-page") {
-          this.search = "";
-        }
-      }
-    );
   }
 };
 </script>
@@ -138,8 +108,6 @@ form input:focus {
 }
 form a,
 form button {
-  position: absolute;
-  right: 25px;
   background-color: var(--main-color);
   color: #fff;
   padding: 4px 25px;

@@ -45,19 +45,8 @@
     <div class="bottom-nav fixed-bottom">
       <transition name="search" mode="out-in">
         <div class="search-bar position-absolute" v-if="searchBar">
-          <form class="form-inline">
-            <i class="fas fa-search position-absolute"></i>
-            <input
-              class="form-control bg-transparent border-0 w-100 pl-4 text-white-50"
-              @keypress.enter.prevent="redirect"
-              v-model="search"
-              placeholder="Search products"
-            />
-            <router-link
-              :to="{ name: 'search-page', params: { search: search } }"
-              class="text-white mr-3"
-              >Search</router-link
-            >
+          <form class="">
+            <search-widget v-model="search" />
           </form>
         </div>
       </transition>
@@ -178,6 +167,7 @@
 
 <script>
 import { mapState } from "vuex";
+import SearchWidget from "../Global/SearchWidget.vue";
 export default {
   data() {
     return {
@@ -195,13 +185,24 @@ export default {
     openSideNav() {
       this.openNav = true;
       setTimeout(() => (this.slide = true), 100);
-    },
-    redirect() {
-      window.location.href = `/search/${this.search}`;
     }
   },
   computed: {
     ...mapState(["carts"])
+  },
+  components: { SearchWidget },
+  created() {
+    this.$watch(
+      "search",
+      val => {
+        if (val.length > 0) {
+          this.searchBar = true;
+        } else {
+          this.searchBar = false;
+        }
+      },
+      { immediate: true }
+    );
   }
 };
 </script>
