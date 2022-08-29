@@ -13,22 +13,30 @@
           <form class="form-inline my-2 my-lg-0">
             <i class="fas fa-search position-absolute"></i>
             <input
-              class="form-control bg-transparent border-0 w-100 pl-4 text-white-50"
+              class="
+                form-control
+                bg-transparent
+                border-0
+                w-100
+                pl-4
+                text-white-50
+              "
               @keypress.enter.prevent="redirect"
               v-model="search"
               placeholder="Search products"
             />
-            <router-link
-              :to="{ name: 'search-page', params: { search: search } }"
-              class="text-white"
-              >Search</router-link
-            >
+            <button class="text-white" @click.prevent="redirect">Search</button>
           </form>
         </div>
         <!-- Icons -->
         <div class="col-3 align-self-center">
           <div
-            class="shopping-icons d-flex justify-content-center align-items-center"
+            class="
+              shopping-icons
+              d-flex
+              justify-content-center
+              align-items-center
+            "
           >
             <i class="far fa-user pr-4"></i>
             <div class="cart-icon">
@@ -90,12 +98,27 @@ export default {
       this.$emit("openCart");
     },
     redirect() {
-      window.location.href = `/search/${this.search}`;
+      if (this.search.length > 0) {
+        this.$router.push({
+          name: "search-page",
+          query: { search: this.search }
+        });
+      }
     }
   },
   computed: {
     ...mapState(["carts"]),
     ...mapGetters(["subTotal"])
+  },
+  created() {
+    this.$watch(
+      () => this.$route.name,
+      newVal => {
+        if (newVal != "search-page") {
+          this.search = "";
+        }
+      }
+    );
   }
 };
 </script>

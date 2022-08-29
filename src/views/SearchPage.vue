@@ -63,7 +63,7 @@ export default {
   components: { IncDec },
   data() {
     return {
-      search: this.$route.params.search
+      search: this.$route.query.search
     };
   },
   computed: {
