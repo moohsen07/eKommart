@@ -6,7 +6,11 @@
       mode="out-in"
       :duration="{ enter: 500, leave: 800 }"
     >
-      <router-view class="mt-lg-0" style="margin-top: 70px" />
+      <router-view
+        class="mt-lg-0"
+        style="margin-top: 70px"
+        :key="$route.path"
+      />
     </transition>
     <app-footer />
   </div>
