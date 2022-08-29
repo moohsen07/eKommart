@@ -12,7 +12,7 @@
         <span class="text-white-50">{{ search }}</span>
       </div>
       <template v-if="filteredProducts.length">
-        <h1 class="my-4">Searched Products</h1>
+        <h3 class="my-4 text-uppercase">Searched Products</h3>
         <div
           class="product-search mb-4"
           v-for="product in filteredProducts"

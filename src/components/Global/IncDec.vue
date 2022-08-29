@@ -1,12 +1,19 @@
 <template>
   <div
-    class="inc-dec d-flex justify-content-between align-items-center flex-wrap mb-4"
+    class="
+      inc-dec
+      d-flex
+      justify-content-between
+      align-items-center
+      flex-wrap
+      mb-4
+    "
   >
     <div class="quantity d-flex align-items-center mb-3 mb-lg-0">
       <a href="#" class="dec" @click.prevent="decQuantity"
         ><i class="fas fa-minus"></i
       ></a>
-      <span> {{ product.quantity }} </span>
+      <span> {{ quantity }} </span>
       <a href="#" class="inc" @click.prevent="incQuantity"
         ><i class="fas fa-plus"></i
       ></a>
@@ -29,16 +36,22 @@
 <script>
 export default {
   props: ["product"],
+  data() {
+    return {
+      quantity: 1
+    };
+  },
   methods: {
     incQuantity() {
-      this.product.quantity++;
+      this.quantity++;
     },
     decQuantity() {
-      if (this.product.quantity > 1) {
-        this.product.quantity--;
+      if (this.quantity > 1) {
+        this.quantity--;
       }
     },
     addToCart(item) {
+      item.quantity = this.quantity;
       this.$store.dispatch("addToCart", item);
     },
     loading() {

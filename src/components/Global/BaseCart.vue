@@ -2,7 +2,13 @@
   <div class="overlay" :class="{ open: open }" @click.self="closeCart">
     <div class="cart shadow">
       <div
-        class="cart-header position-relative d-flex justify-content-between align-items-center"
+        class="
+          cart-header
+          position-relative
+          d-flex
+          justify-content-between
+          align-items-center
+        "
       >
         <h4 class="text-uppercase">Shopping Cart</h4>
         <span
@@ -11,7 +17,10 @@
           >Close</span
         >
       </div>
-      <div class="display-products mt-4">
+      <div class="no-product-in-cart mt-4 text-center" v-if="!carts.length">
+        <p class="text-muted">No products in the cart.</p>
+      </div>
+      <div class="display-products mt-4" v-else>
         <transition-group name="cart" tag="div">
           <div class="product mb-4" v-for="product in carts" :key="product.id">
             <div class="row">
@@ -41,12 +50,16 @@
           </div>
         </transition-group>
       </div>
-      <div
-        v-if="subTotal > 0"
-        class="cart-footer d-flex justify-content-between"
-      >
-        <span class="text-uppercase">Subtotal :</span>
-        <span>${{ subTotal }}</span>
+      <div class="cart-footer" v-if="subTotal > 0">
+        <div class="cart-footer__subtotal d-flex justify-content-between mb-2">
+          <span class="text-uppercase">Subtotal :</span>
+          <span>${{ subTotal }}</span>
+        </div>
+        <button
+          class="cart-footer__checkout-btn block w-100 py-1 text-uppercase"
+        >
+          checkout
+        </button>
       </div>
     </div>
   </div>
@@ -135,6 +148,14 @@ export default {
   transform: rotate(0deg);
   background-color: var(--main-color);
 }
+.no-product-in-cart p {
+  font-size: 20px;
+}
+.display-products {
+  height: calc(100% - 145px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .cart-header::before {
   content: "";
   position: absolute;
@@ -144,6 +165,7 @@ export default {
   height: 1px;
   background: rgba(204, 204, 204, 0.226);
 }
+
 .cart .product {
   border: none !important;
 }
@@ -151,22 +173,23 @@ export default {
   font-size: 14px;
 }
 .cart-footer {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  padding-right: 30px;
+  position: relative;
   font-size: 20px;
+  padding: 16px 0;
 }
 .cart-footer::before {
   content: "";
   position: absolute;
-  top: -20px;
+  top: 0px;
   left: -20px;
   width: calc(100% + 40px);
   height: 1px;
   background: rgba(204, 204, 204, 0.226);
 }
-
+.cart-footer__checkout-btn {
+  background: var(--main-color);
+  color: #fff;
+}
 /* cart-group transition */
 
 .cart-leave-to {

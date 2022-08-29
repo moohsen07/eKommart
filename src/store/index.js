@@ -79,13 +79,12 @@ export default new Vuex.Store({
       return smartWatches;
     },
     subTotal(state) {
-      let total = state.carts.reduce((accumulator, currentValue) => {
+      return state.carts.reduce((accumulator, currentValue) => {
         const sum = accumulator + currentValue.price * currentValue.quantity;
         const str = sum.toString();
         const result = parseFloat(str.slice(0, 6));
         return result;
       }, 0);
-      return total;
     }
   }
 });
