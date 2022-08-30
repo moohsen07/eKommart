@@ -1,8 +1,8 @@
 <template>
   <div class="mega-menu position-absolute d-flex">
     <div class="mega-menu__item">
-      <div class="mega-menu__item--title text-primary text-uppercase">
-        <h6>Category</h6>
+      <div class="mega-menu__item--title text-uppercase">
+        <router-link to="" class="text-primary">Category</router-link>
       </div>
       <div class="mega-menu__item--content">
         <ul class="list-unstyled">
@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="mega-menu__item">
-      <div class="mega-menu__item--title text-primary text-uppercase">
-        <h6>Category</h6>
+      <div class="mega-menu__item--title text-uppercase">
+        <router-link to="" class="text-primary">Category</router-link>
       </div>
       <div class="mega-menu__item--content">
         <ul class="list-unstyled">
@@ -49,8 +49,8 @@
       </div>
     </div>
     <div class="mega-menu__item">
-      <div class="mega-menu__item--title text-primary text-uppercase">
-        <h6>Category</h6>
+      <div class="mega-menu__item--title text-uppercase">
+        <router-link to="" class="text-primary">Category</router-link>
       </div>
       <div class="mega-menu__item--content">
         <ul class="list-unstyled">
@@ -73,8 +73,8 @@
       </div>
     </div>
     <div class="mega-menu__item">
-      <div class="mega-menu__item--title text-primary text-uppercase">
-        <h6>Category</h6>
+      <div class="mega-menu__item--title text-uppercase">
+        <router-link to="" class="text-primary">Category</router-link>
       </div>
       <div class="mega-menu__item--content">
         <ul class="list-unstyled">
@@ -120,14 +120,20 @@ export default {};
   .mega-menu__item {
     .mega-menu__item--title {
       position: relative;
+      margin-bottom: 8px;
       &::before {
         content: "";
         position: absolute;
-        bottom: -5px;
+        bottom: -4px;
         left: 0;
         width: 60%;
         height: 1px;
         background-color: var(--main-color);
+      }
+      a {
+        &:hover {
+          color: var(--main-color) !important;
+        }
       }
     }
   }

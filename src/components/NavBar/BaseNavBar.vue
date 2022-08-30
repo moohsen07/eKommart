@@ -3,12 +3,16 @@
     <div class="container">
       <div class="base-nav__upper row py-4 align-items-center">
         <!-- burger button -->
-        <div class="col-3 d-md-none">
-          <div class="burger-button" style="cursor: pointer">
+        <div class="col-3 d-block d-md-none">
+          <button
+            class="burger-button bg-transparent border-0"
+            @click="baseNavbar = true"
+            style="cursor: pointer"
+          >
             <div class="lines"></div>
             <div class="lines"></div>
             <div class="lines"></div>
-          </div>
+          </button>
         </div>
         <!-- Logo -->
         <div class="col-6 col-md-3">
@@ -68,26 +72,50 @@
       </div>
     </div>
     <!-- Links -->
-    <div class="nav base-nav__links-wrapper">
-      <ul class="base-nav__links--list d-flex justify-content-center w-100">
-        <li class="nav-item py-3">
-          <router-link class="text-white" to="/">Home</router-link>
-        </li>
-        <li class="nav-item py-3 position-relative">
-          <router-link class="text-white" to="">Category</router-link>
-          <mega-menu />
-        </li>
-        <li class="nav-item py-3">
-          <router-link class="text-white" to="">Shop</router-link>
-        </li>
-        <li class="nav-item py-3">
-          <router-link class="text-white" to="">Blog</router-link>
-        </li>
-        <li class="nav-item py-3">
-          <router-link class="text-white" to="">Contact</router-link>
-        </li>
-      </ul>
-    </div>
+    <transition name="fade-in">
+      <div
+        class="nav base-nav__links-wrapper"
+        v-show="baseNavbar"
+        @click.self="baseNavbar = false"
+      >
+        <transition name="slide">
+          <ul
+            class="
+              base-nav__links--list
+              d-flex
+              justify-content-center
+              w-100
+              position-relative
+            "
+            v-if="baseNavbar"
+          >
+            <li class="close-icon position-absolute d-md-none">
+              <i
+                class="fas fa-times"
+                @click="baseNavbar = false"
+                style="cursor: pointer"
+              ></i>
+            </li>
+            <li class="nav-item py-3">
+              <router-link class="text-white" to="/">Home</router-link>
+            </li>
+            <li class="nav-item py-3 position-relative">
+              <router-link class="text-white" to="">Category</router-link>
+              <mega-menu />
+            </li>
+            <li class="nav-item py-3">
+              <router-link class="text-white" to="">Shop</router-link>
+            </li>
+            <li class="nav-item py-3">
+              <router-link class="text-white" to="">Blog</router-link>
+            </li>
+            <li class="nav-item py-3">
+              <router-link class="text-white" to="">Contact</router-link>
+            </li>
+          </ul>
+        </transition>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -101,18 +129,32 @@ export default {
   components: { SearchWidget, MegaMenu },
   data() {
     return {
-      search: ""
+      search: "",
+      baseNavbar: false
     };
   },
 
   methods: {
     openCart() {
       this.$emit("openCart");
+    },
+    changeBaseNavbarStatus() {
+      window.innerWidth < 768
+        ? (this.baseNavbar = false)
+        : (this.baseNavbar = true);
     }
   },
   computed: {
     ...mapState(["carts"]),
     ...mapGetters(["subTotal"])
+  },
+  created() {
+    this.changeBaseNavbarStatus();
+  },
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.changeBaseNavbarStatus();
+    });
   }
 };
 </script>
@@ -141,6 +183,26 @@ form {
 
 .base-nav {
   .base-nav__upper {
+    .burger-button {
+      .lines {
+        height: 2px;
+        background-color: #fff;
+        margin-bottom: 5px;
+        transition: 0.5s ease;
+        &:first-child {
+          width: 25px;
+        }
+        &:nth-child(2) {
+          width: 15px;
+        }
+        &:last-child {
+          width: 5px;
+        }
+      }
+    }
+    .burger-button:hover .lines {
+      background: var(--main-color);
+    }
     .shopping-icons {
       i {
         font-size: 25px;
@@ -173,6 +235,48 @@ form {
         }
       }
     }
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 6;
+      .base-nav__links--list {
+        flex-direction: column;
+        background: #252525;
+        width: max-content !important;
+        justify-content: flex-start !important;
+        min-width: 250px;
+        box-shadow: 0px 0px 20px 0px #000;
+        padding-top: 32px;
+        .close-icon {
+          top: 0;
+          right: 0;
+          margin: 16px;
+        }
+      }
+    }
   }
+}
+.fade-in-enter-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-in-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 </style>
