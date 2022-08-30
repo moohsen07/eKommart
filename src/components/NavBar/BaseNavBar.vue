@@ -1,66 +1,89 @@
 <template>
-  <div class="base-nav d-none d-lg-block">
+  <div class="base-nav">
     <div class="container">
-      <div class="row">
-        <!-- Logo -->
-        <div class="col-3">
-          <router-link class="navbar-brand" :to="{ name: 'Home' }">
-            <img src="@/assets/images/logo-dark.svg" width="165px" alt="" />
-          </router-link>
+      <div class="base-nav__upper row py-4 align-items-center">
+        <!-- burger button -->
+        <div class="col-3 d-md-none">
+          <div class="burger-button" style="cursor: pointer">
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+          </div>
         </div>
+        <!-- Logo -->
+        <div class="col-6 col-md-3">
+          <div class="base-nav__logo">
+            <router-link :to="{ name: 'Home' }">
+              <img
+                src="@/assets/images/logo-dark.svg"
+                class="img-fluid"
+                width="165px"
+                alt=""
+              />
+            </router-link>
+          </div>
+        </div>
+
         <!-- Search Bar -->
-        <div class="col-6">
-          <form class="my-2 my-lg-0">
-            <search-widget v-model="search" />
-          </form>
+        <div class="col-md-6 d-none d-md-block">
+          <div class="base-nav__search">
+            <form class="my-2 my-lg-0">
+              <search-widget v-model="search" />
+            </form>
+          </div>
         </div>
         <!-- Icons -->
-        <div class="col-3 align-self-center">
-          <div
-            class="
-              shopping-icons
-              d-flex
-              justify-content-center
-              align-items-center
-            "
-          >
-            <i class="far fa-user pr-4"></i>
-            <div class="cart-icon">
-              <i
-                class="fas fa-shopping-basket"
-                style="cursor: pointer"
-                @click="openCart"
-              ></i>
-              <span
-                class="badge badge-danger rounded-circle position-absolute"
-                >{{ carts.length }}</span
-              >
-
-              <span v-if="subTotal > 0" class="tottal-price pl-3"
-                >${{ subTotal }}</span
-              >
-              <span v-else class="tottal-price pl-3">$0.00</span>
+        <div class="col-3">
+          <div class="base-nav__icons">
+            <div
+              class="
+                shopping-icons
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <i class="far fa-user pr-4 d-none d-md-block"></i>
+              <div class="cart-icon d-flex position-relative">
+                <i
+                  class="fas fa-shopping-basket"
+                  style="cursor: pointer"
+                  @click="openCart"
+                ></i>
+                <span
+                  class="badge badge-danger rounded-circle position-absolute"
+                  >{{ carts.length }}</span
+                >
+                <div class="subtotal d-none d-md-block pl-3">
+                  <span v-if="subTotal > 0">
+                    {{ subTotal }}
+                    >${{ subTotal }}</span
+                  >
+                  <span v-else>$0.00</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Links -->
-    <div class="nav py-3 mt-4">
-      <ul class="navbar-nav flex-row m-auto">
-        <li class="nav-item active">
+    <div class="nav base-nav__links-wrapper">
+      <ul class="base-nav__links--list d-flex justify-content-center w-100">
+        <li class="nav-item py-3">
           <router-link class="text-white" to="/">Home</router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="text-white" to="">About</router-link>
+        <li class="nav-item py-3 position-relative">
+          <router-link class="text-white" to="">Category</router-link>
+          <mega-menu />
         </li>
-        <li class="nav-item">
+        <li class="nav-item py-3">
           <router-link class="text-white" to="">Shop</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item py-3">
           <router-link class="text-white" to="">Blog</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item py-3">
           <router-link class="text-white" to="">Contact</router-link>
         </li>
       </ul>
@@ -72,9 +95,10 @@
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
 import SearchWidget from "../Global/SearchWidget.vue";
+import MegaMenu from "./MegaMenu.vue";
 
 export default {
-  components: { SearchWidget },
+  components: { SearchWidget, MegaMenu },
   data() {
     return {
       search: ""
@@ -93,44 +117,62 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 form {
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 4px 15px;
+  i {
+    color: var(--main-color);
+  }
+  input {
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+  a,
+  button {
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 4px 25px;
+    border-radius: 4px;
+  }
 }
 
-form i {
-  color: var(--main-color);
-}
-form input:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-form a,
-form button {
-  background-color: var(--main-color);
-  color: #fff;
-  padding: 4px 25px;
-  border-radius: 4px;
-}
+.base-nav {
+  .base-nav__upper {
+    .shopping-icons {
+      i {
+        font-size: 25px;
+      }
+      .badge {
+        font-size: 13px;
+        font-weight: lighter;
+        top: -15px;
+        left: 20px;
+      }
+    }
+  }
 
-.shopping-icons i {
-  font-size: 25px;
-}
-.shopping-icons .badge {
-  font-size: 13px;
-  font-weight: lighter;
-  top: -15px;
-}
-.nav {
-  background-color: var(--main-color);
-}
-.nav a {
-  color: #fff;
-  padding: 4px 20px;
-  font-size: 17px;
-}
-.nav a:hover {
-  text-decoration: none;
+  .base-nav__links-wrapper {
+    background-color: var(--main-color);
+    .nav-item {
+      > a {
+        color: #fff;
+        padding: 20px;
+        font-size: 17px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      &:hover {
+        .mega-menu {
+          opacity: 1;
+          visibility: visible;
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }
 </style>
