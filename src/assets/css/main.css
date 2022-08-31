@@ -98,8 +98,7 @@ a:hover {
 
 
 /* add-cart animation */
-.spinner-container,
-.check {
+.add-cart-loading {
   top: 0;
   left: 0;
   background: var(--main-color);

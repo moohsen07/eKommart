@@ -19,16 +19,14 @@
           {{ product.name }}
         </h6>
       </router-link>
-      <span class="price text-main">$ {{ product.price }} </span>
-      <a
-        href="#"
-        ref="anchor"
-        @click.prevent="
-          addToCart(product);
-          loading('anchor');
-        "
-        class="add-cart d-block position-relative py-2 my-3"
-        >Add To Card</a
+      <span class="price text-main d-block">$ {{ product.price }} </span>
+      <app-button
+        mode="outline"
+        :loading="loading"
+        :success="success"
+        @click.native="changeLoadingState"
+        class="my-3"
+        >Add to card</app-button
       >
     </div>
     <div class="inner-hover position-absolute d-flex">
@@ -39,10 +37,27 @@
         ref="btn"
         @click="
           addToCart(product);
-          loading('btn');
+          changeLoadingState();
         "
       >
         <i class="fas fa-shopping-basket"></i>
+        <div
+          class="
+            add-cart-loading
+            d-flex
+            justify-content-center
+            align-items-center
+            w-100
+            h-100
+            position-absolute
+          "
+          v-if="loading || success"
+        >
+          <div class="spinner-border" v-if="loading"></div>
+          <div class="check" v-if="success">
+            <i class="far fa-check-circle"></i>
+          </div>
+        </div>
       </button>
     </div>
   </div>
@@ -50,8 +65,18 @@
 
 <script>
 import { EventBus } from "../../main";
+import AppButton from "../../components/Global/AppButton";
 export default {
   props: ["product"],
+  components: {
+    AppButton
+  },
+  data() {
+    return {
+      loading: false,
+      success: false
+    };
+  },
   methods: {
     openPreview(product) {
       EventBus.$emit("openPreview", product);
@@ -59,21 +84,14 @@ export default {
     addToCart(product) {
       this.$store.dispatch("addToCart", product);
     },
-    loading(el) {
-      let content = this.$refs[el].innerHTML;
-      this.$refs[
-        el
-      ].innerHTML += `<div class="spinner-container d-flex justify-content-center align-items-center w-100 h-100 position-absolute">
-      <div class="spinner-border">
-      <div></div>`;
+    changeLoadingState() {
+      this.loading = true;
       setTimeout(() => {
-        this.$refs[
-          el
-        ].innerHTML += `<div class="check d-flex justify-content-center align-items-center w-100 h-100 position-absolute"><i class="far fa-check-circle"></i></div>`;
-      }, 1000);
-
-      setTimeout(() => {
-        this.$refs[el].innerHTML = content;
+        this.loading = false;
+        this.success = true;
+        setTimeout(() => {
+          this.success = false;
+        }, 2000);
       }, 3000);
     }
   }
@@ -93,15 +111,7 @@ export default {
 .quantity .inc:hover {
   color: var(--main-color);
 }
-.add-cart {
-  color: var(--main-color);
-  text-decoration: none;
-  overflow: hidden;
-  transition: 0.5s cubic-bezier(0.59, 0.03, 0.2, 1);
-  border: 1px solid;
-  z-index: 5;
-}
-.add-cart::before,
+
 .inner-hover button::before {
   content: "";
   position: absolute;
@@ -114,10 +124,7 @@ export default {
   transform: rotate3d(0, 0, 1, 12deg) translate3d(-1.2em, 110%, 0);
   transition: 0.5s cubic-bezier(0.59, 0.03, 0.2, 1);
 }
-.add-cart:hover {
-  color: #000;
-}
-.add-cart:hover::before,
+
 .inner-hover button:hover::before {
   bottom: 0;
   transform: none;
