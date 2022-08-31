@@ -89,27 +89,43 @@
             "
             v-if="baseNavbar"
           >
-            <li class="close-icon position-absolute d-md-none">
+            <!-- <li class="close-icon position-absolute d-md-none">
               <i
                 class="fas fa-times"
                 @click="baseNavbar = false"
                 style="cursor: pointer"
               ></i>
-            </li>
-            <li class="nav-item py-3">
+            </li> -->
+            <li class="nav-item px-3 py-2 p-md-3">
               <router-link class="text-white" to="/">Home</router-link>
             </li>
-            <li class="nav-item py-3 position-relative">
-              <router-link class="text-white" to="">Category</router-link>
+            <li
+              class="
+                nav-item
+                px-3
+                py-2
+                p-md-3
+                position-relative
+                nav-item__collapse
+              "
+              @click="openCollapseMenu"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <router-link class="text-white" to="">Category</router-link>
+                <i
+                  class="fas fa-chevron-down pl-2"
+                  style="transition: 0.3s ease-in-out"
+                ></i>
+              </div>
               <mega-menu />
             </li>
-            <li class="nav-item py-3">
+            <li class="nav-item px-3 py-2 p-md-3">
               <router-link class="text-white" to="">Shop</router-link>
             </li>
-            <li class="nav-item py-3">
+            <li class="nav-item px-3 py-2 p-md-3">
               <router-link class="text-white" to="">Blog</router-link>
             </li>
-            <li class="nav-item py-3">
+            <li class="nav-item px-3 py-2 p-md-3">
               <router-link class="text-white" to="">Contact</router-link>
             </li>
           </ul>
@@ -142,6 +158,10 @@ export default {
       window.innerWidth < 768
         ? (this.baseNavbar = false)
         : (this.baseNavbar = true);
+    },
+    openCollapseMenu(e) {
+      let target = e.target.closest(".nav-item__collapse");
+      target.classList.toggle("open");
     }
   },
   computed: {
@@ -219,19 +239,36 @@ form {
   .base-nav__links-wrapper {
     background-color: var(--main-color);
     .nav-item {
+      cursor: pointer;
       > a {
         color: #fff;
-        padding: 20px;
         font-size: 17px;
         &:hover {
           text-decoration: none;
         }
       }
-      &:hover {
+      &.open {
+        > div > a {
+          color: var(--main-color) !important;
+        }
+        .fas {
+          transform: rotate(180deg);
+          color: var(--main-color) !important;
+        }
         .mega-menu {
-          opacity: 1;
-          visibility: visible;
-          margin-top: 0;
+          height: 250px;
+          margin-top: 16px;
+          padding-top: 16px;
+          padding-bottom: 16px;
+        }
+      }
+      @media (min-width: 768px) {
+        &:hover {
+          .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0;
+          }
         }
       }
     }
@@ -240,7 +277,7 @@ form {
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background: rgba(0, 0, 0, 0.5);
       z-index: 6;
       .base-nav__links--list {
@@ -250,7 +287,9 @@ form {
         justify-content: flex-start !important;
         min-width: 250px;
         box-shadow: 0px 0px 20px 0px #000;
-        padding-top: 32px;
+        height: 100vh;
+        overflow-y: scroll;
+        padding: 24px 0;
         .close-icon {
           top: 0;
           right: 0;

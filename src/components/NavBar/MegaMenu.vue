@@ -1,5 +1,5 @@
 <template>
-  <div class="mega-menu position-absolute d-flex">
+  <div class="mega-menu">
     <div class="mega-menu__item">
       <div class="mega-menu__item--title text-uppercase">
         <router-link to="" class="text-primary">Category</router-link>
@@ -105,21 +105,38 @@ export default {};
 
 <style lang="scss">
 .mega-menu {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--secondary-color);
-  width: max-content;
-  z-index: 5;
-  padding: 16px 32px;
-  gap: 4rem;
-  margin-top: 24px;
-  opacity: 0;
-  visibility: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  overflow-x: hidden;
+  overflow-y: scroll;
   transition: 0.3s ease-in-out;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--secondary-color);
+    width: max-content;
+    z-index: 5;
+    padding: 16px 32px;
+    gap: 4rem;
+    margin-top: 24px;
+    height: max-content;
+    box-shadow: none;
+    flex-direction: row;
+    opacity: 0;
+    visibility: hidden;
+  }
   .mega-menu__item {
     .mega-menu__item--title {
       position: relative;
+      display: inline-block;
       margin-bottom: 8px;
       &::before {
         content: "";
@@ -133,6 +150,14 @@ export default {};
       a {
         &:hover {
           color: var(--main-color) !important;
+        }
+      }
+    }
+    .mega-menu__item--content {
+      li {
+        transition: 0.3s ease-in-out;
+        &:hover {
+          transform: translateX(8px);
         }
       }
     }
