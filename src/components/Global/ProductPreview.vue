@@ -6,7 +6,7 @@
       v-if="product"
     >
       <div class="preview bg-white" :class="{ show: flip }">
-        <button class="close p-3" @click="closeProduct">
+        <button class="close p-3 position-absolute" @click="closeProduct">
           <i class="fas fa-times"></i>
         </button>
         <div class="row">
@@ -14,7 +14,14 @@
             <div class="product-slider py-3 h-100">
               <flickity ref="flickity" :options="flickityOptions">
                 <div
-                  class="carousel-cell w-100 h-100 d-flex justify-content-center align-items-center"
+                  class="
+                    carousel-cell
+                    w-100
+                    h-100
+                    d-flex
+                    justify-content-center
+                    align-items-center
+                  "
                 >
                   <img
                     class="img-fluid"
@@ -23,7 +30,14 @@
                   />
                 </div>
                 <div
-                  class="carousel-cell w-100 h-100 d-flex justify-content-center align-items-center"
+                  class="
+                    carousel-cell
+                    w-100
+                    h-100
+                    d-flex
+                    justify-content-center
+                    align-items-center
+                  "
                 >
                   <img
                     class="img-fluid"
@@ -57,7 +71,14 @@
               </p>
               <inc-dec :product="product" />
               <router-link
-                class="go-to-product d-block text-center bg-dark text-white py-3"
+                class="
+                  go-to-product
+                  d-block
+                  text-center
+                  bg-dark
+                  text-white
+                  py-3
+                "
                 :to="{ name: 'product-page', params: { id: product.id } }"
               >
                 <i class="fas fa-chevron-right pr-3"></i> Go To Product
@@ -123,6 +144,13 @@ export default {
   color: #000;
   opacity: 0.1;
   transition: 0.8s ease;
+  position: relative;
+}
+.preview .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 .preview.show {
   transform: none;

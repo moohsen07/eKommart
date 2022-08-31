@@ -75,14 +75,23 @@
         <div class="row">
           <div class="col-12 col-md-6 col-lg-2 mb-3 mb-lg-0">
             <div
-              class="sign-up d-flex align-items-center justify-content-center justify-content-md-start"
+              class="
+                sign-up
+                d-flex
+                align-items-center
+                justify-content-center justify-content-md-start
+              "
             >
               <i class="fas fa-envelope-open-text mr-3"></i>
               <span class="text-uppercase">Sign Up To NewSletter </span>
             </div>
           </div>
           <div
-            class="col-12 col-md-6 col-lg-3 text-center text-md-left mb-3 mb-lg-0"
+            class="
+              col-12 col-md-6 col-lg-3
+              text-center text-md-left
+              mb-3 mb-lg-0
+            "
           >
             <span class="text-white-50"
               >Subscribe to the weekly newsletter for all the latest
@@ -90,9 +99,13 @@
             >
           </div>
           <div
-            class="col-12 col-md-6 col-lg-5 text-center text-md-left mb-3 mb-lg-0"
+            class="
+              col-12 col-md-6 col-lg-5
+              text-center text-md-left
+              mb-3 mb-lg-0
+            "
           >
-            <form class="form-inline">
+            <form class="d-flex justify-content-between">
               <input
                 class="form-control bg-transparent border-0"
                 type="search"
@@ -102,7 +115,11 @@
             </form>
           </div>
           <div
-            class="col-12 col-md-6 col-lg-2 text-center text-lg-right align-self-center"
+            class="
+              col-12 col-md-6 col-lg-2
+              text-center text-lg-right
+              align-self-center
+            "
           >
             <div class="social-icons">
               <i class="fab fa-facebook-f"></i>

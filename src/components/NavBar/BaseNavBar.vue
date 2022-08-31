@@ -59,10 +59,7 @@
                   >{{ carts.length }}</span
                 >
                 <div class="subtotal d-none d-md-block pl-3">
-                  <span v-if="subTotal > 0">
-                    {{ subTotal }}
-                    >${{ subTotal }}</span
-                  >
+                  <span v-if="subTotal > 0">${{ subTotal }}</span>
                   <span v-else>$0.00</span>
                 </div>
               </div>

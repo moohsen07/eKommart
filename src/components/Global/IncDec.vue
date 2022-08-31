@@ -8,8 +8,9 @@
       flex-wrap
       mb-4
     "
+    style="gap: 16px"
   >
-    <div class="quantity d-flex align-items-center mb-3 mb-lg-0">
+    <div class="quantity d-flex align-items-center">
       <a href="#" class="dec" @click.prevent="decQuantity"
         ><i class="fas fa-minus"></i
       ></a>
@@ -25,7 +26,16 @@
         addToCart(product);
         loading();
       "
-      class="add-cart position-relative bg-main text-white mt-3"
+      class="
+        add-cart
+        position-relative
+        bg-main
+        text-white
+        d-flex
+        justify-content-center
+        align-items-center
+        flex-grow-1
+      "
     >
       <i class="fas fa-shopping-basket pr-2"></i>
       Add To Card</a
