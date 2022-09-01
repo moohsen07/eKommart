@@ -11,28 +11,18 @@
     :class="mode"
   >
     <slot></slot>
-    <div
-      class="
-        add-cart-loading
-        d-flex
-        justify-content-center
-        align-items-center
-        w-100
-        h-100
-        position-absolute
-      "
+    <add-card
+      :loading="loading"
+      :success="success"
       v-if="loading || success"
-    >
-      <div class="spinner-border" v-if="loading"></div>
-      <div class="check" v-if="success">
-        <i class="far fa-check-circle"></i>
-      </div>
-    </div>
+    ></add-card>
   </div>
 </template>
 
 <script>
+import AddCard from "./AddCard.vue";
 export default {
+  components: { AddCard },
   props: {
     mode: {
       type: String,
