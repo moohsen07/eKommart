@@ -80,7 +80,7 @@
 
               <inc-dec :product="product" />
               <hr style="background-color: rgba(255, 255, 255, 0.2)" />
-              <ul>
+              <ul class="list-unstyled">
                 <li>
                   Category:
                   <span class="text-white-50">{{ product.category }}</span>
@@ -103,7 +103,14 @@
     <!-- Tabs Wrapper -->
     <div class="tabs mt-5">
       <div class="container">
-        <ul class="position-relative d-md-flex justify-content-center">
+        <ul
+          class="
+            list-unstyled
+            position-relative
+            d-md-flex
+            justify-content-center
+          "
+        >
           <li class="marker d-none d-md-block" id="marker" ref="marker"></li>
           <li
             id="tab-one"
@@ -180,8 +187,6 @@
         </div>
       </div>
     </div>
-    <!-- Product Preview -->
-    <product-preview />
   </div>
 </template>
 
@@ -195,7 +200,6 @@ import Information from "@/components/SinglePage/Information.vue";
 import VendorInfo from "@/components/SinglePage/VendorInfo.vue";
 import Reviews from "@/components/SinglePage/Reviews.vue";
 import Product from "@/components/Global/Product.vue";
-import ProductPreview from "@/components/Global/ProductPreview.vue";
 
 export default {
   components: {
@@ -206,7 +210,6 @@ export default {
     Information,
     VendorInfo,
     Product,
-    ProductPreview,
     Reviews
   },
   data() {
@@ -244,6 +247,10 @@ export default {
   mounted() {
     const marker = this.$refs.marker;
     const tabOne = document.querySelector(".tabs #tab-one");
+    window.onresize = () => {
+      marker.style.cssText = `left: ${tabOne.offsetLeft +
+        "px"}; width: ${tabOne.offsetWidth + "px"}`;
+    };
     if (marker) {
       marker.style.cssText = `left: ${tabOne.offsetLeft +
         "px"}; width: ${tabOne.offsetWidth + "px"}`;

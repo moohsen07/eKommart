@@ -78,6 +78,8 @@
         <transition name="slide">
           <ul
             class="
+              list-unstyled
+              mb-0
               base-nav__links--list
               d-flex
               justify-content-center

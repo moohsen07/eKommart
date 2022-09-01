@@ -19,36 +19,27 @@
         ><i class="fas fa-plus"></i
       ></a>
     </div>
-    <a
-      href="#"
-      ref="btn"
-      @click.prevent="
-        addToCart(product);
-        loading();
-      "
-      class="
-        add-cart
-        position-relative
-        bg-main
-        text-white
-        d-flex
-        justify-content-center
-        align-items-center
-        flex-grow-1
-      "
+    <app-button
+      :loading="loading"
+      :success="success"
+      @click.native="addToCart(product)"
     >
       <i class="fas fa-shopping-basket pr-2"></i>
-      Add To Card</a
-    >
+      Add To Card
+    </app-button>
   </div>
 </template>
 
 <script>
+import AppButton from "./AppButton.vue";
 export default {
+  components: { AppButton },
   props: ["product"],
   data() {
     return {
-      quantity: 1
+      quantity: 1,
+      loading: false,
+      success: false
     };
   },
   methods: {
@@ -62,20 +53,16 @@ export default {
     },
     addToCart(item) {
       item.quantity = this.quantity;
-      this.$store.dispatch("addToCart", item);
-    },
-    loading() {
-      let content = this.$refs.btn.innerHTML;
-      this.$refs.btn.innerHTML += `<div class="spinner-container d-flex justify-content-center align-items-center w-100 h-100 position-absolute">
-      <div class="spinner-border">
-      <div></div>`;
+      this.loading = true;
       setTimeout(() => {
-        this.$refs.btn.innerHTML += `<div class="check d-flex justify-content-center align-items-center w-100 h-100 position-absolute"><i class="far fa-check-circle"></i></div>`;
-      }, 1000);
-
-      setTimeout(() => {
-        this.$refs.btn.innerHTML = content;
-      }, 3000);
+        this.$store.dispatch("addToCart", item).then(() => {
+          this.loading = false;
+          this.success = true;
+          setTimeout(() => {
+            this.success = false;
+          }, 1000);
+        });
+      }, 2000);
     }
   }
 };

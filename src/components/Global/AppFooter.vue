@@ -8,7 +8,7 @@
             <span class="text-uppercase font-weight-bold">Our Store</span>
             <div class="row">
               <div class="col-12 col-lg-6">
-                <ul>
+                <ul class="list-unstyled">
                   <li class="text-white-50 pt-3">New York</li>
                   <li class="text-white-50 pt-3">London SF</li>
                   <li class="text-white-50 pt-3">Cockfosters BP</li>
@@ -16,7 +16,7 @@
                 </ul>
               </div>
               <div class="col-12 col-lg-6">
-                <ul>
+                <ul class="list-unstyled">
                   <li class="text-white-50 pt-3">Chicago</li>
                   <li class="text-white-50 pt-3">Las Vigas</li>
                   <li class="text-white-50 pt-3">Tixas</li>
@@ -50,7 +50,7 @@
             <span class="text-uppercase font-weight-bold">Information</span>
             <div class="row">
               <div class="col-12 col-lg-6">
-                <ul>
+                <ul class="list-unstyled">
                   <li class="text-white-50 pt-3">About Us</li>
                   <li class="text-white-50 pt-3">Delivery Information</li>
                   <li class="text-white-50 pt-3">Privacy Policy</li>
@@ -58,7 +58,7 @@
                 </ul>
               </div>
               <div class="col-12 col-lg-6">
-                <ul>
+                <ul class="list-unstyled">
                   <li class="text-white-50 pt-3">My Account</li>
                   <li class="text-white-50 pt-3">Order History</li>
                   <li class="text-white-50 pt-3">Wish List</li>

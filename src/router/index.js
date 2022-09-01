@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import ProductPage from "../views/ProductPage.vue";
 import SearchPage from "../views/SearchPage.vue";
-
+import CategoryPage from "../views/CategoryPage.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -22,6 +22,12 @@ const routes = [
     path: "/search/",
     name: "search-page",
     component: SearchPage,
+    props: true
+  },
+  {
+    path: "/category/:id",
+    name: "category-page",
+    component: CategoryPage,
     props: true
   }
 ];

@@ -4,9 +4,11 @@
       app-btn
       d-flex
       justify-content-center
-      align-item-center
+      align-items-center
       py-2
-      text-capitalize
+      px-3
+      text-uppercase
+      flex-grow-1
     "
     :class="mode"
   >
@@ -43,12 +45,15 @@ export default {
 <style lang="scss">
 .app-btn {
   position: relative;
-  color: var(--main-color);
+  background: var(--main-color);
+  color: #fff;
   overflow: hidden;
   transition: 0.5s cubic-bezier(0.59, 0.03, 0.2, 1);
   cursor: pointer;
   z-index: 5;
   &.outline {
+    background: transparent;
+    color: var(--main-color);
     border: 1px solid;
     &::before {
       content: "";
