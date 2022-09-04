@@ -27,6 +27,7 @@ export default {};
       border: 1px solid rgba(255, 255, 255, 0.2);
       &:focus {
         border-color: var(--main-color);
+        color: var(--main-color) !important;
       }
     }
   }

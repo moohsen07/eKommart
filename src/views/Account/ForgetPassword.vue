@@ -1,8 +1,12 @@
 <template>
   <div class="forget-password">
-    <h1 class="text-white">Forget Password</h1>
+    <h1 class="text-white">{{ otpForm ? "OTP" : "Forget Password" }}</h1>
     <p class="text-white-50">
-      Enter your email address or phone to reset your password
+      {{
+        otpForm
+          ? "Enter The code you recived on your email or phone"
+          : "Enter your email address or phone to reset your password"
+      }}
     </p>
     <transition-group name="fade" appear mode="out-in">
       <div class="forget-password__enter-cord" key="enter-cord" v-if="!otpForm">
@@ -27,7 +31,6 @@
       <div class="forget-password__otp" key="otp" v-else>
         <form @submit.prevent="verifyOtp" class="px-0 border-0">
           <div class="form-group">
-            <label for="otp">OTP</label>
             <div class="form-group__otp-inputs d-flex">
               <input
                 type="text"
@@ -35,6 +38,9 @@
                 id="otp"
                 required
                 v-model="otp[0]"
+                maxlength="1"
+                @keyup="focusNext(0)"
+                ref="otp0"
               />
               <input
                 type="text"
@@ -42,6 +48,9 @@
                 id="otp"
                 required
                 v-model="otp[1]"
+                maxlength="1"
+                @keyup="focusNext(1)"
+                ref="otp1"
               />
               <input
                 type="text"
@@ -49,6 +58,9 @@
                 id="otp"
                 required
                 v-model="otp[2]"
+                maxlength="1"
+                @keyup="focusNext(2)"
+                ref="otp2"
               />
               <input
                 type="text"
@@ -56,6 +68,9 @@
                 id="otp"
                 required
                 v-model="otp[3]"
+                maxlength="1"
+                @keyup="focusNext(3)"
+                ref="otp3"
               />
             </div>
           </div>
@@ -73,8 +88,18 @@ export default {
   data() {
     return {
       otpForm: true,
-      otp: []
+      otp: ["", "", "", ""]
     };
+  },
+  methods: {
+    focusNext(index) {
+      if (this.otp[index].length === 1 && index < 3) {
+        this.$refs[`otp${index + 1}`].focus();
+      }
+    }
+  },
+  mounted() {
+    this.$refs.otp0.focus();
   }
 };
 </script>
@@ -82,12 +107,13 @@ export default {
 <style lang="scss">
 .forget-password {
   .form-group__otp-inputs {
-    max-width: 220px;
+    max-width: 280px;
     margin: auto;
     input {
-      height: 52px;
+      height: 72px;
       margin-right: 10px;
       text-align: center;
+      font-size: 30px;
     }
   }
 }
