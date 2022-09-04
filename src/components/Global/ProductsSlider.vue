@@ -56,7 +56,7 @@ export default {
   content: "";
   position: absolute;
   top: 0;
-  width: 12%;
+  width: 10%;
   height: 100%;
   background: linear-gradient(
     to #{$direction},
@@ -69,6 +69,12 @@ export default {
   .swiper-button-next,
   .swiper-button-prev {
     opacity: 0;
+  }
+  .swiper-button-next {
+    right: 30px;
+  }
+  .swiper-button-prev {
+    left: 30px;
   }
   &:hover {
     .swiper-button-next,
