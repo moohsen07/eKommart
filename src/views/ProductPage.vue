@@ -15,49 +15,32 @@
       <!-- Product OverView -->
       <div class="product-overview mt-5" v-if="product">
         <div class="row">
-          <div class="col-12 col-md-7">
+          <div class="col-12 col-md-6">
             <div class="product-image py-4 mb-5 mb-md-0 border">
-              <flickity
-                ref="flickity"
-                :options="flickityOptions"
-                :class="'h-100'"
-              >
-                <div
-                  class="
-                    carousel-cell
-                    d-flex
-                    justify-content-center
-                    align-items-center
-                    h-100
-                    w-100
-                  "
-                >
-                  <img
-                    class="img-fluid"
-                    :src="require(`../assets/images/${product.img1}`)"
-                    alt=""
-                  />
+              <div class="swiper py-2" ref="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide text-center">
+                    <img
+                      class="img-fluid"
+                      :src="require(`../assets/images/${product.img1}`)"
+                      alt=""
+                    />
+                  </div>
+                  <div class="swiper-slide text-center">
+                    <img
+                      class="img-fluid"
+                      :src="require(`../assets/images/${product.img2}`)"
+                      alt=""
+                    />
+                  </div>
                 </div>
-                <div
-                  class="
-                    carousel-cell
-                    d-flex
-                    justify-content-center
-                    align-items-center
-                    h-100
-                    w-100
-                  "
-                >
-                  <img
-                    class="img-fluid"
-                    :src="require(`../assets/images/${product.img2}`)"
-                    alt=""
-                  />
-                </div>
-              </flickity>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+              </div>
             </div>
           </div>
-          <div class="col-12 col-md-5">
+          <div class="col-12 col-md-6">
             <div class="product-det">
               <span class="badge badge-success mb-2">in Stock</span>
               <h1>{{ product ? product.name : "" }}</h1>
@@ -176,15 +159,7 @@
     <div class="related-products my-5">
       <div class="container">
         <h2 class="text-center mb-5">Related Product</h2>
-        <div class="row">
-          <div
-            class="col-12 col-md-6 col-lg-3 px-md-0"
-            v-for="product in relatedProducts"
-            :key="product.id"
-          >
-            <product :product="product" />
-          </div>
-        </div>
+        <products-slider :products="products" />
       </div>
     </div>
   </div>
@@ -192,46 +167,41 @@
 
 <script>
 import { mapState } from "vuex";
-import Flickity from "vue-flickity";
 import StarRating from "vue-star-rating";
 import IncDec from "@/components/Global/IncDec.vue";
 import Description from "@/components/SinglePage/Description.vue";
 import Information from "@/components/SinglePage/Information.vue";
 import VendorInfo from "@/components/SinglePage/VendorInfo.vue";
 import Reviews from "@/components/SinglePage/Reviews.vue";
-import Product from "@/components/Global/Product.vue";
+import ProductsSlider from "../components/Global/ProductsSlider.vue";
+import Swiper, { Navigation, Pagination } from "swiper";
 
 export default {
   components: {
-    Flickity,
     StarRating,
     IncDec,
     Description,
     Information,
     VendorInfo,
-    Product,
-    Reviews
+    Reviews,
+    ProductsSlider
   },
   data() {
     return {
       flickityOptions: {
         initialIndex: 0,
-        prevNextButtons: false,
+        prevNextButtons: true,
         pageDots: true,
         wrapAround: true,
         autoPlay: false
       },
+
       id: this.$route.params.id,
       currentTab: "description"
     };
   },
   computed: {
-    ...mapState(["products", "product"]),
-    relatedProducts() {
-      const start = Math.floor(Math.random() * (this.products.length - 7));
-      const end = start + 4;
-      return this.products.slice(start, end);
-    }
+    ...mapState(["products", "product"])
   },
   methods: {
     freePosition(e) {
@@ -255,6 +225,19 @@ export default {
       marker.style.cssText = `left: ${tabOne.offsetLeft +
         "px"}; width: ${tabOne.offsetWidth + "px"}`;
     }
+    new Swiper(this.$refs.swiper, {
+      modules: [Navigation, Pagination],
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true
+      }
+    });
   }
 };
 </script>
@@ -262,13 +245,6 @@ export default {
 <style>
 .dir a:hover {
   color: var(--main-color) !important;
-}
-.product-page .product-image {
-  height: 80vh;
-}
-.product-image img {
-  transform: scale(1.2);
-  padding-bottom: 20px;
 }
 
 .product-page .flickity-page-dots .dot {

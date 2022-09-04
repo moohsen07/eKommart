@@ -146,3 +146,31 @@ a:hover {
     max-width: 1200px;
   }
 }
+
+/* swiper navigation and pagination buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff;
+  opacity: 0.5;
+  transition: 0.2s ease-in-out;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 1;
+}
+.swiper-button-next{
+  right: 16px;
+}
+.swiper-button-prev{
+  left: 16px;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 30px;
+}
+.swiper-pagination-bullet {
+  background-color: #fff;
+}
+.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background-color: var(--main-color) !important;
+}
