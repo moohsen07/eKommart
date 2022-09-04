@@ -1,5 +1,8 @@
 <template>
-  <div class="nav-mobile d-lg-none">
+  <div
+    class="nav-mobile d-lg-none"
+    v-if="!this.$route.path.includes('account')"
+  >
     <!-- Bottom Nav -->
     <div class="bottom-nav fixed-bottom">
       <transition name="search" mode="out-in">
