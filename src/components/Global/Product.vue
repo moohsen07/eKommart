@@ -34,7 +34,7 @@
           mode="outline"
           :loading="loading"
           :success="success"
-          @click.native="addToCart"
+          @click.native="addToCart(product)"
           class="border-top-0 border-bottom-0"
           >Add to card</app-button
         >

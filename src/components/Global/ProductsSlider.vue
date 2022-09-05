@@ -52,19 +52,6 @@ export default {
 </script>
 
 <style lang="scss">
-@mixin overlay($direction) {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 10%;
-  height: 100%;
-  background: linear-gradient(
-    to #{$direction},
-    rgba(25, 25, 25, 0) 0%,
-    rgb(25, 25, 25, 0.8) 100%
-  );
-  z-index: 4;
-}
 .products-slider {
   .swiper-button-next,
   .swiper-button-prev {
@@ -82,19 +69,6 @@ export default {
       opacity: 0.5;
       &:hover {
         opacity: 1;
-      }
-    }
-  }
-  @media (min-width: 992px) {
-    .swiper {
-      position: relative;
-      &::before {
-        @include overlay(left);
-        left: 0;
-      }
-      &::after {
-        @include overlay(right);
-        right: 0;
       }
     }
   }
