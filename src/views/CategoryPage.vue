@@ -5,7 +5,7 @@
       <div class="category-page__content my-4">
         <div class="row">
           <div class="col-12 col-md-4 col-lg-3">
-            <div class="category-page__content--filter rounded p-3">
+            <div class="category-page__content--filter rounded p-4">
               <sub-category
                 :categories="categories"
                 class="filter-item border-bottom border-secondary"
@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="col-12 col-md-8 col-lg-9 mt-3 mt-md-0">
-            <div class="category-page__content--products rounded p-3">
+            <div class="category-page__content--products rounded p-4">
               <div class="content__products--header">
                 <div class="category-name">
                   <h3>Men's Fashion</h3>

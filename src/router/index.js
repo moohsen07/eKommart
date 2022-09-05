@@ -8,6 +8,7 @@ import Account from "../views/Account/index.vue";
 import Login from "../views/Account/Login.vue";
 import Register from "../views/Account/Register.vue";
 import ForgetPassword from "../views/Account/ForgetPassword.vue";
+import Profile from "../views/Account/Profile.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -57,6 +58,11 @@ const routes = [
         path: "forget-password",
         name: "forget-password",
         component: ForgetPassword
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: Profile
       }
     ]
   }

@@ -20,14 +20,18 @@ export default {};
     margin: 24px auto;
     padding: 24px;
     background: #1c1c1c;
-    @media (min-width: 768px) {
-      max-width: 750px;
+    > :not(.profile) {
+      @media (min-width: 768px) {
+        max-width: 750px;
+      }
     }
-    input.form-control {
+    input.form-control,
+    select.form-control {
       border: 1px solid rgba(255, 255, 255, 0.2);
       &:focus {
         border-color: var(--main-color);
         color: var(--main-color) !important;
+        box-shadow: none;
       }
     }
   }
