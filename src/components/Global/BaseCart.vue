@@ -21,7 +21,7 @@
         <p class="text-muted">No products in the cart.</p>
       </div>
       <div class="display-products mt-4" v-else>
-        <transition-group name="cart" tag="div">
+        <transition-group appear mode="out-in" name="cart" tag="div">
           <div class="product mb-4" v-for="product in carts" :key="product.id">
             <div class="row">
               <div class="col-4">
@@ -41,10 +41,19 @@
                 <span class="d-block"
                   >Vendor: <span class="text-muted">online store</span></span
                 >
-                <span
-                  >{{ product.quantity }} ×
-                  <span class="text-main">${{ product.price }}</span></span
-                >
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="product-quantity">
+                    <span
+                      >{{ product.quantity }} ×
+                      <span class="text-main">${{ product.price }}</span></span
+                    >
+                  </div>
+                  <div class="change-quantity text-white-50 border px-2">
+                    <i class="fas fa-minus font-light"></i>
+                    <span class="px-2">{{ product.quantity }}</span>
+                    <i class="fas fa-plus font-light"></i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -56,10 +65,17 @@
           <span>${{ subTotal }}</span>
         </div>
         <button
-          class="cart-footer__checkout-btn block w-100 py-1 text-uppercase"
+          class="
+            cart-footer__checkout-btn
+            block
+            w-100
+            py-1
+            text-uppercase
+            border-0
+          "
         >
-          checkout
-        </button>
+          checkout</button
+        >>
       </div>
     </div>
   </div>
