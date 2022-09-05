@@ -48,7 +48,17 @@
                       <span class="text-main">${{ product.price }}</span></span
                     >
                   </div>
-                  <div class="change-quantity text-white-50 border px-2">
+                  <div
+                    class="
+                      change-quantity
+                      d-flex
+                      align-items-center
+                      text-white-50
+                      border
+                      px-2
+                    "
+                    style="font-size: 12px"
+                  >
                     <i class="fas fa-minus font-light"></i>
                     <span class="px-2">{{ product.quantity }}</span>
                     <i class="fas fa-plus font-light"></i>
